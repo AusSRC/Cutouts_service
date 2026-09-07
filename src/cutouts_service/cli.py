@@ -106,7 +106,7 @@ def build_parser() -> argparse.ArgumentParser:
         "dec", type=parse_latitude, help="Declination of the centre of the cutout"
     )
     parser.add_argument("radius", type=float, help="Cutout radius in arcminutes")
-    parser.add_argument("file", help="Input file path or URL")
+    parser.add_argument("file", type=str, help="Input file path or URL")
     parser.add_argument(
         "--s3-endpoint-url",
         default=None,
