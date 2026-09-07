@@ -6,6 +6,8 @@ A cutouts service to act as an alternative for the existing CASDA cutouts servic
 
 To set up the repository run the below commands to fetch the repository and install the development requirements.
 
+> **_NOTE:_** Python versions less than 3.14 have trouble parsing negative sexagesimal inputs. If using a lower python version, see the [Example section](#example) on how to work around this issue.
+
 ```bash
 git clone https://github.com/AusSRC/cutouts_service
 cd cutouts_service
@@ -63,11 +65,18 @@ cutouts-service 180.0 -30.0 0.1 "https://example.com/file.fits" --output cutout.
 cutouts-service 180.0 -30.0 0.1 "s3://example-bucket/file.fits" --output cutout.fits
 cutouts-service 180.0 -30.0 0.1 "s3://example-bucket/file.fits" --s3-endpoint-url "https://objects.example.org" --output cutout.fits
 cutouts-service 180.0 -30.0 0.1 "https://example.com/file.fits" --spectral-min 0.8 --spectral-max 1.0 --spectral-units GHz --output cutout.fits
+cutouts-service 12h00m00s -30d00m00s 0.1 "https://example.com/file.fits" --output cutout.fits
 ```
 
 The CLI accepts `ra`, `dec`, `radius`, a remote FITS URL input (`http`, `https`, or `s3`), and a required `--output` path. It uses Astropy to extract a sky cutout from the source FITS file and writes the resulting FITS file to disk. Ensure that the urls are contained in quotes, especially if it contains special characters.
 
 For S3-compatible object stores, pass `--s3-endpoint-url` to route `s3://` requests to a custom endpoint.
+
+> **_NOTE:_** if using Python versions lower than 3.14 enter negative sexagesimal values enclosed in quotes and led with a space, for example:
+```bash
+cutouts-service 12h00m00s " -30d00m00s" 0.1 "https://example.com/file.fits" --output cutout.fits
+```
+
 
 ## Current unsupported features and caveats
 
