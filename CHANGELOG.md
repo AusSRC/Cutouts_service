@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased - 2026-09-04
+
+## Changed
+- Changed the longitude and latitude parsing to use astropy's Angle parsing, ensuring that and reasonable input (decimal or sexagesimal) should parse to the right coordinate.
+
+## Fixed
+- Changed minimum python version to 3.14 to avoid issues with parsing negative sexagesimal values.
+
 ## [1.0.4] - 2026-07-30
 
 ### Added
